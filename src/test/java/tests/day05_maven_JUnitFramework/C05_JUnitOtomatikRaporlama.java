@@ -1,38 +1,28 @@
 package tests.day05_maven_JUnitFramework;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.bouncycastle.crypto.prng.drbg.DualECPoints;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C04_JUnitTestNotasyonu {
+public class C05_JUnitOtomatikRaporlama {
 
     /*
-        Junit'in bize kazandirdigi en onemli yeniliklerden biri
-        @Test notasyonudur.
+        Junit framework'unde
+        bir class veya test method'u calistirildiginda
+        JUnit tum class veya istenen method'un
+        sorunsuz olarak sonuna kadar calisip calismadigini kontrol eder
 
-        Notasyon (annotation) kucuk bilgiler(meta data) barindiran yapilardir.
-        sadece bir yazi ya da gosterim degillerdir
-        yaptiklari islemler vardir
+        - sorunsuz calisirsa test PASSED
+        - kodlar sorun ciktigi icin calistirilamazsa test FAILED
+        olarak isaretlenir
 
-        @Test notasyonu siradan bir method'u
-        tek basina calistirilabilir bir test method'una donusturur
-
-        JUnit ile test method'lari istersek tek basina,
-        istersek de class level'dan calistirilip
-        tum testlerin birlikte calisabilecegi bir yapiya donusur.
-
-        JUnit class icerisindeki test method'larini
-        belirsiz bir sirada calistirir.
-        Test method'larinin hangi sira ile calisacagini
-        ONGOREMEYIZ ve DUZENLEYEMEYIZ
+        Eger if-else ile yaptigimiz testlerde
+        JUnit'in raporlarinin da test sonuclari ile uyumlu olmasini isterseniz
+        FAILED durumlarinda throw keyword ile herhangi bir exception olustuttabiliriz.
      */
-
-    // Bir class'da 3 farkli test olsa
-    // ve ben testleri istersem toplu, istersem bagimsiz olarak calistirabilsem
 
     @Test
     public void amazonTesti(){
@@ -50,6 +40,7 @@ public class C04_JUnitTestNotasyonu {
             System.out.println("Amazon url testi PASSED");
         }else {
             System.out.println("Amazon url testi FAILED");
+            throw new RuntimeException();
         }
 
         // sayfayi kapatin
@@ -67,12 +58,13 @@ public class C04_JUnitTestNotasyonu {
         driver.get("https://www.wisequarter.com");
         // Title'in Wise Quarter icerdigini test edin
 
-        String expectedTitleIcerik = "Wise Quarters";
+        String expectedTitleIcerik = "Wise Quarter";
         String actualTitle= driver.getTitle();
         if (actualTitle.contains(expectedTitleIcerik)){
             System.out.println("Wise Quarter title testi PASSED" );
         }else{
             System.out.println("Wise Quarter title testi FAILED" );
+            throw new RuntimeException();
         }
         // ve sayfayi kapatin
         driver.close();
