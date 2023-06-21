@@ -23,7 +23,7 @@ public class C03_YoutubeAssertions {
     static WebDriver driver;
 
     @BeforeClass
-    public static void setup(){
+    public static void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();
         driver.manage().window().maximize();
