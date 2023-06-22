@@ -71,8 +71,19 @@ public class C04_SwitchingWindow extends TestBaseQuit {
         Assert.assertEquals(expectedTitle,actualTitle);
 
         //● Sayfadaki textin “New Window” olduğunu doğrulayın.
+        WebElement yaziElementi = driver.findElement(By.tagName("h3"));
+        expectedYazi="New Window";
+        actualyazi = yaziElementi.getText();
+        Assert.assertEquals(expectedYazi,actualyazi);
         //● Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
 
+        driver.switchTo().window(ilkSayfaWHD);
+        expectedTitle = "The Internet";
+        actualTitle = driver.getTitle();
+        Assert.assertEquals(expectedTitle,actualTitle);
+
         bekle(5);
+
+
     }
 }
