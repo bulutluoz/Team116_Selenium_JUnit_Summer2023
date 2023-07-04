@@ -73,9 +73,12 @@ public class C01_ExplicitlyWait {
         WebElement itsGoneElementi = driver.findElement(By.xpath("//*[text()=\"It's gone!\"]"));
         Assert.assertTrue(itsGoneElementi.isDisplayed());
         //6. Add buttonuna basin
-        
+        driver.findElement(By.xpath("//*[text()=\"Add\"]")).click();
         //7. It’s back mesajinin gorundugunu test edin
-        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\"It's back!\"]")));
+        WebElement itsBackElementi = driver.findElement(By.xpath("//*[text()=\"It's back!\"]"));
+        Assert.assertTrue(itsBackElementi.isDisplayed());
+        driver.close();
         
     }
 }
