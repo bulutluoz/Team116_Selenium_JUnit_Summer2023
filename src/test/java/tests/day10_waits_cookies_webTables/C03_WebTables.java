@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import utilities.ReusableMethods;
 import utilities.TestBase;
 
 import java.util.List;
@@ -59,5 +60,11 @@ public class C03_WebTables extends TestBase {
         }
         //8.Satir ve sutun sayisini parametre olarak alip,
         //  hucredeki bilgiyi döndüren bir method olusturun
+        System.out.println("=======istenen hucredeki yazi=======");
+        System.out.println(ReusableMethods.hucredekiYaziyiGetir(5, 5, driver));
+
+
     }
+
+
 }
