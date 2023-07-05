@@ -44,9 +44,46 @@ public class C04_WebTables extends TestBase {
         List<WebElement> satirlarList = driver.findElements(By.xpath("//div[@role='row']"));
         System.out.println("Tablodaki satir sayisi : " + satirlarList.size());
         //  7. Tablodaki sutun sayisini yazdirin
+        System.out.println("Tablodaki sutun sayisi : " + headerElementleriList.size());
         //  8. Tablodaki 3.kolonu yazdirin
+        List<WebElement> ucuncuSutunElementleri=
+                driver.findElements(By.xpath("//div[@role='row']/div[@role='gridcell'][3]"));
+        System.out.println("=====3.Sutun Elementleri======");
+        for (WebElement eachData: ucuncuSutunElementleri
+        ) {
+            if (!eachData.getText().isBlank()){
+                System.out.println(eachData.getText());
+            }
+        }
+
         //  9. Tabloda "First Name" i Kierra olan kisinin Salary'sini yazdirin
-        //10. Page sayfasinda bir method olusturun, Test sayfasindan satir ve sutun sayisini girdigimde bana datayi yazdirsin
+
+        WebElement isimElementi;
+        WebElement maasElementi;
+
+        for (int i = 2; i <= satirlarList.size() ; i++) {
+
+            isimElementi=
+                    driver.findElement(By.xpath("(//div[@role='row'])["+i+"]/div[@role='gridcell'][1]"));
+            maasElementi=
+                    driver.findElement(By.xpath("(//div[@role='row'])["+i+"]/div[@role='gridcell'][5]"));
+
+            if (isimElementi.getText().equals("Kierra")){
+                System.out.println("Kierra'nin maasi : "+maasElementi.getText());
+            }
+
+        }
+
+        //10. bir method olusturun,satir ve sutun sayisini girdigimde bana datayi yazdirsin
+        hucreBilgisiYazdir(3,5);
+
+    }
+
+    public void hucreBilgisiYazdir(int satirNo, int sutunNo){
+        // (//div[@role='row'])[   2   ]/div[@role='gridcell'][   4   ]
+        String dinamikXpath = "(//div[@role='row'])["+ satirNo + "]/div[@role='gridcell']["+sutunNo+"]";
+        WebElement istenenElement= driver.findElement(By.xpath(dinamikXpath));
+        System.out.println("Istenen hucredeki yazi : "+istenenElement.getText());
     }
 
 }
