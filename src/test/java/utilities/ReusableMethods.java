@@ -62,4 +62,22 @@ public class ReusableMethods {
         }
 
     }
+
+    public static void webElementFotoCek(WebDriver driver, WebElement istenenWebElement) {
+
+        LocalDateTime ldt = LocalDateTime.now(); // 2023-07-06T09:16:39.121372
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYMMddhhmm");
+        String dinamikDosyaYolu = "target/Screenshots/webElement"+ldt.format(dtf)+".png";
+
+        File webElementFoto = new File(dinamikDosyaYolu);
+        File geciciDosya = istenenWebElement.getScreenshotAs(OutputType.FILE);
+
+        try {
+            FileUtils.copyFile(geciciDosya,webElementFoto);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 }
